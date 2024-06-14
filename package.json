@@ -1,0 +1,39 @@
+{
+  "name": "blog.sharath.uk",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro check && astro build",
+    "dev": "astro dev",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/mdx": "^3.1.0",
+    "@astrojs/rss": "^4.0.6",
+    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/tailwind": "^5.1.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "@unpic/astro": "^0.0.46",
+    "astro": "^4.10.2",
+    "eslint": "8.x",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^1.2.2",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-react": "^7.34.2",
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.5.0",
+    "prettier-plugin-tailwindcss": "^0.6.4",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
+  }
+}

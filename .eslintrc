@@ -1,0 +1,79 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "eslint-config-prettier"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.mdx",
+        "*.md"
+      ],
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:mdx/recommended"
+      ],
+      "settings": {
+        "mdx/code-blocks": false,
+        "mdx/language-mapper": {},
+        "no-unused-vars": "off"
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    },
+    {
+      "files": [
+        "*.astro"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:jsx-a11y/recommended"
+      ],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "project": "./tsconfig.json",
+        "extraFileExtensions": [
+          ".astro"
+        ]
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    ".astro/",
+    "**/*.js",
+    "README.md",
+    "*.config.*"
+  ],
+  "settings": {
+    "react": {
+      "version": "18.3.1"
+    },
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}
