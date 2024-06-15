@@ -2,23 +2,35 @@
 import HeaderLink from '@/components/HeaderLink.astro';
 import { Image } from 'astro:assets';
 
+import MdiOpenInNewIcon from '~icons/mdi/open-in-new';
+
 import { Github } from 'simple-icons-astro';
 ---
 
 <header>
-  <nav class="flex">
-    <a href="https://sharath.uk" target="_blank" rel="noopener noreferrer">
-      <span class="sr-only">Go to this blog's owner's website</span>
-      <Image src="/icon.png" width={48} height={48} alt="blog.sharath.uk logo" />
-    </a>
-    <div>
-      <HeaderLink href="/">Blog</HeaderLink>
-      <HeaderLink href="https://sharath.uk" target="_blank" rel="noopener noreferrer">About</HeaderLink>
+  <nav class="flex w-full items-center gap-4 border-b p-4">
+    <div class="flex-1">
+      <a class="flex w-12 items-center gap-4" href="/">
+        <span class="sr-only">Go to this blog's homepage</span>
+        <Image src="/icon.png" width={48} height={48} alt="blog.sharath.uk logo" />
+        <span class="hidden text-2xl md:block">blog.sharath.uk</span>
+      </a>
+    </div>
+    <div class="flex gap-4">
+      <HeaderLink
+        class="flex flex-row items-center gap-2 text-xl"
+        href="https://sharath.uk"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>sharath.uk</span>
+        <MdiOpenInNewIcon width={16} height={16} />
+      </HeaderLink>
     </div>
     <div>
       <a href="https://github.com/tnfssc/blog.sharath.uk" target="_blank" rel="noopener noreferrer">
         <span class="sr-only">Go to this blog's GitHub repo</span>
-        <Github width={32} height={32} />
+        <Github class="h-10 w-10" />
       </a>
     </div>
   </nav>

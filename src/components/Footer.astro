@@ -1,8 +1,27 @@
 ---
+import { Github, Linkedin, X as Twitter } from 'simple-icons-astro';
+
 const today = new Date();
 ---
 
-<footer class="container mx-auto">
-  &copy; {today.getFullYear()}
-  <a href="https://sharath.uk" target="_blank" rel="noopener noreferrer">Sharath</a>
+<footer class="flex w-full items-center gap-4 border-t p-4">
+  <div class="container flex items-center justify-end gap-3">
+    <a href="https://github.com/tnfssc" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">Go to sharath's GitHub</span>
+      <Github class="h-5 w-5" />
+    </a>
+    <a href="https://x.com/tnfssc" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">Go to sharath's Twitter</span>
+      <Twitter class="h-5 w-5" />
+    </a>
+    <a href="https://www.linkedin.com/in/tnfssc/" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">Go to sharath's LinkedIn</span>
+      <Linkedin class="h-5 w-5" />
+    </a>
+
+    <div>
+      &copy; {today.getFullYear()}
+      <a href="https://sharath.uk" target="_blank" rel="noopener noreferrer">Sharath</a>
+    </div>
+  </div>
 </footer>

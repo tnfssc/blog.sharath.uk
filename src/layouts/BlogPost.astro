@@ -6,28 +6,23 @@ import BaseLayout from './Base.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, date, heroImage } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article>
-    <div>
-      {heroImage && <Image width={144} height={144} src={heroImage} alt="" />}
+  <article
+    class="prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden"
+  >
+    <div class="flex justify-center">
+      {heroImage && <Image class="rounded-xl" width={480} height={270} src={heroImage} alt={title} />}
     </div>
     <div>
       <div>
-        <div>
-          <FormattedDate date={pubDate} />
-          {
-            updatedDate && (
-              <div>
-                Last updated on <FormattedDate date={updatedDate} />
-              </div>
-            )
-          }
+        <h1 class="mb-1">{title}</h1>
+        <div class="flex justify-end gap-4">
+          <FormattedDate date={date} />
         </div>
-        <h1>{title}</h1>
-        <hr />
+        <hr class="my-4" />
       </div>
       <slot />
     </div>

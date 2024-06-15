@@ -1,4 +1,5 @@
 import rss from '@astrojs/rss';
+
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
 
@@ -14,6 +15,7 @@ export async function GET(context: APIContext) {
     site: context.site,
     items: posts.map((post) => ({
       ...post.data,
+      pubDate: post.data.date,
       link: `/blog/${post.slug}/`,
     })),
   });

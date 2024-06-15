@@ -1,8 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 interface Props {
   title?: string;
@@ -18,9 +18,9 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = '/icon-inver
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body>
+  <body class="flex h-screen flex-col overflow-auto">
     <Header />
-    <main class="prose dark:prose-invert container mx-auto p-6">
+    <main class="container mx-auto flex-1 p-6">
       <slot />
     </main>
     <Footer />

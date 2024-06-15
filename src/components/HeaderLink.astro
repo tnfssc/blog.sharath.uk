@@ -11,6 +11,6 @@ const subpath = pathname.match(/[^/]+/g);
 const isActive = href === pathname || href === `/${subpath?.[0] ?? ''}`;
 ---
 
-<a href={href} class={cn(className, 'inline-block', { 'underline font-bold': isActive })} {...props}>
+<a href={href} class={cn('inline-block', { 'underline font-bold': isActive }, className)} {...props}>
   <slot />
 </a>

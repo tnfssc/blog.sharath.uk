@@ -115,8 +115,4 @@
       'rlig' 1,
       'calt' 1;
   }
-
-  a {
-    @apply hover:underline;
-  }
 }
