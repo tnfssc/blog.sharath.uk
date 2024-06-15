@@ -11,7 +11,7 @@ const { title, description, date, heroImage } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <article
-    class="prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden"
+    class="prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden prose-img:rounded-xl"
   >
     <div class="flex justify-center">
       {heroImage && <Image class="rounded-xl" width={480} height={270} src={heroImage} alt={title} />}
