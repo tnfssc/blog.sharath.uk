@@ -1,6 +1,6 @@
 ---
 import HeaderLink from '@/components/HeaderLink.astro';
-import { Image } from '@unpic/astro';
+import { Image } from 'astro:assets';
 
 import { Github } from 'simple-icons-astro';
 ---
@@ -8,7 +8,7 @@ import { Github } from 'simple-icons-astro';
 <header>
   <nav class="flex">
     <a href="https://sharath.uk" target="_blank" rel="noopener noreferrer">
-      <Image src="/icon.png" layout="constrained" width={48} height={48} alt="blog.sharath.uk logo" />
+      <Image src="/icon.png" width={48} height={48} alt="blog.sharath.uk logo" />
     </a>
     <div>
       <HeaderLink href="/">Blog</HeaderLink>
