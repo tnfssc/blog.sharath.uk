@@ -2,6 +2,11 @@
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "strictNullChecks": true,
-    "types": ["./jsx.d.ts"]
+    "types": ["./jsx.d.ts", "unplugin-icons/types/astro"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@cn": ["./src/cn"]
+    }
   }
 }

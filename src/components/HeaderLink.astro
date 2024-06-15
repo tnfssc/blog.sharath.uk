@@ -1,4 +1,5 @@
 ---
+import { cn } from '@cn';
 import type { HTMLAttributes } from 'astro/types';
 
 type Props = HTMLAttributes<'a'>;
@@ -10,16 +11,6 @@ const subpath = pathname.match(/[^/]+/g);
 const isActive = href === pathname || href === `/${subpath?.[0] ?? ''}`;
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a href={href} class={cn(className, 'inline-block', { 'underline font-bold': isActive })} {...props}>
   <slot />
 </a>
-<style>
-  a {
-    display: inline-block;
-    text-decoration: none;
-  }
-  a.active {
-    font-weight: bolder;
-    text-decoration: underline;
-  }
-</style>
