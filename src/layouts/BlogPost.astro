@@ -6,22 +6,26 @@ import BaseLayout from './Base.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, date, heroImage } = Astro.props;
+const { title, description, date, heroImage, tags } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
   <article
     class="prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden prose-pre:mt-0 prose-pre:rounded-t-none prose-img:rounded-xl"
   >
+    <div class="flex justify-end gap-4">
+      <FormattedDate date={date} />
+    </div>
     <div class="flex justify-center">
-      {heroImage && <Image class="rounded-xl" width={480} height={270} src={heroImage} alt={title} />}
+      {heroImage && <Image class="mt-2 w-full rounded-xl" width={480} height={270} src={heroImage} alt={title} />}
     </div>
     <div>
       <div>
         <h1 class="mb-1">{title}</h1>
-        <div class="flex justify-end gap-4">
-          <FormattedDate date={date} />
-        </div>
+        <p class="text-sm text-gray-300">
+          {description}
+        </p>
+        {tags.map((t) => <span class="rounded-full border p-2 text-sm text-gray-500">{t}</span>)}
         <hr class="my-4" />
       </div>
       <slot />
