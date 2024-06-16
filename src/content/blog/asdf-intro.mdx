@@ -6,7 +6,9 @@ heroImage: 'https://cdn.sharath.uk/20246-s0gnz.jpg'
 tags: ['asdf', 'nvm', 'nodejs', 'volta', 'toolchain', 'version', 'manager']
 ---
 
-For all the lazy readers 🤓 out there, [click here](#theImportantBit) to skip ahead to the important bit on how to use the thing. I highly recommend NOT skipping for first time readers.
+import CodeHead from '@/components/CodeHead.astro';
+
+For all the lazy readers 🤓 out there, [click here](#how-to-use) to skip ahead to the important bit on how to use the thing. I highly recommend NOT skipping for first time readers.
 
 ## Why?
 
@@ -55,13 +57,15 @@ That night, I was scrolling throught GitHub's Explore page again. I saw `asdf-vm
 
 ### 🔥 Installation
 
-import { Github } from 'simple-icons-astro';
+import SimpleIconsGithub from '~icons/simple-icons/github';
 
-#### Clone the repo <Github class="h-4 w-4 inline ml-1" />
+#### Clone the repo <SimpleIconsGithub class="h-4 w-4 inline ml-1" />
 
 Run the following command to clone the repo into your `~/.asdf` directory.
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 ```
 
@@ -71,7 +75,9 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 
 If you know what shell you are using, well that's good. Use the following command to confirm what shell you are using. If it outputs something like `/bin/zsh`, it means that you are using `zsh` shell.
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 echo $SHELL
 ```
 
@@ -83,7 +89,9 @@ Run the command depending on what shell you are using
 
 `zsh` users (default on macOS)
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 echo '. "$HOME/.asdf/asdf.sh"' >> ~/.zshrc
 echo "fpath=($ASDF_DIR/completions $fpath)" >> ~/.zshrc
 echo "autoload -Uz compinit && compinit" >> ~/.zshrc
@@ -91,14 +99,18 @@ echo "autoload -Uz compinit && compinit" >> ~/.zshrc
 
 `bash` users (default on linux or old macOS)
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
 ```
 
 `fish` users (the one I use)
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 mkdir -p ~/.config/fish/completions
 ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 echo -e '\nsource ~/.asdf/asdf.fish' >> ~/.config/fish/config.fish
@@ -121,7 +133,9 @@ You can't do much with just asdf installed. You need plugins to install any tool
 
 You can list all available plugins by using
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf plugin list all
 ```
 
@@ -133,7 +147,9 @@ You can also look for plugins over [here](https://github.com/asdf-vm/asdf-plugin
 
 To add a plugin, use the command
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf plugin add nodejs # Add the NodeJS plugin
 asdf plugin add deno # Add the Deno plugin
 ```
@@ -142,7 +158,9 @@ We are not done yet. We have `asdf` and we have our plugins. We are still missin
 
 To see all available versions of the toolchain, use the command
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf list all nodejs
 ```
 
@@ -152,7 +170,9 @@ asdf list all nodejs
 
 To install as specific version, use
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf install nodejs lts
 # or
 asdf install nodejs 20.14.0
@@ -174,22 +194,26 @@ Just like how `nvm` expects a `.nvmrc` file in the root of your project, `asdf` 
 
 To set a global (default) version, use the command
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf global deno 1.31.1
 ```
 
 This creates a `~/.tool-versions` file. This file holds the versions to use by default on your computer. Here's my `.tool-versions` global configuration for example.
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 cat ~/.tool-versions
 
-bun 0.5.7
-golang 1.20.1
-nodejs 18.13.0
-rust 1.67.1
-rust-analyzer 2023-02-27
-neovim 0.8.0
-deno 1.31.1
+# bun 0.5.7
+# golang 1.20.1
+# nodejs 18.13.0
+# rust 1.67.1
+# rust-analyzer 2023-02-27
+# neovim 0.8.0
+# deno 1.31.1
 ```
 
 You can create a similar file in your project's root with the versions you want. Just remember to name it correctly.
@@ -202,7 +226,9 @@ You already know how to use `asdf`.
 
 You can install a tool version using
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf install <toolshortname> <version>
 
 # For example
@@ -211,7 +237,9 @@ asdf install nodejs 18.12.1
 
 You can switch to it on a global context by editing `~/.tool-versions` file. Or you could use the
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf global <toolshortname> <version>
 
 # For example
@@ -220,7 +248,9 @@ asdf global nodejs 18.12.1
 
 You list all the installed versions of a tool using
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf list <toolname>
 
 # For example
@@ -237,7 +267,9 @@ import LetsIconsLightningAltFill from '~icons/lets-icons/lightning-alt-fill';
 
 One of the most common problems you encounter is that `command not found` error when you try to use something like `yarn`, `npx` or `corepack`. This could also occur when you install something like `pm2` using `npm install --global pm2` or `yarn global add pm2`. To resolve this, simply run
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 asdf reshim
 ```
 
@@ -251,7 +283,9 @@ Remove the `asdf` lines from your `~/.config/fish/config.fish`, `.bashrc` or `.z
 
 Remove the entire `~/.asdf` directory. Remove the `~/.asdfrc` and `~/.tool-versions` file.
 
-```bash
+<CodeHead lang="sh" />
+
+```sh
 rm -rf ~/.asdf
 rm ~/.asdfrc ~/.tool-versions
 ```

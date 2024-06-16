@@ -1,0 +1,23 @@
+---
+import { LangIcons } from '@/lib/lang-icon';
+import TablerCopy from '~icons/tabler/copy';
+
+import { CodeHeadCopyReact } from './CodeHeadCopy.react';
+
+interface Props {
+  lang: keyof typeof LangIcons;
+  filename?: string;
+}
+
+const { lang, filename } = Astro.props;
+
+const Component = LangIcons[lang];
+---
+
+<div class="mt-6 flex w-full items-center gap-2 rounded-t-lg border-b border-solid border-b-slate-500 bg-[#24292E] p-2">
+  <Component class="inline h-4 w-4" />
+  <span class="flex-1 font-mono text-sm font-bold">{filename ?? lang}</span>
+  <CodeHeadCopyReact client:load className="inline h-4 w-4 hover:text-slate-500">
+    <TablerCopy class="h-full w-full" />
+  </CodeHeadCopyReact>
+</div>

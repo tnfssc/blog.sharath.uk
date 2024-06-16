@@ -11,6 +11,13 @@
     "preview": "bun --bun x astro preview",
     "start": "bun --bun x astro dev"
   },
+  "dependencies": {
+    "@astrojs/react": "^3.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "devDependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^3.1.0",
@@ -41,7 +48,6 @@
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.5.0",
     "prettier-plugin-tailwindcss": "^0.6.4",
-    "simple-icons-astro": "^12.2.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",

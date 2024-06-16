@@ -1,5 +1,7 @@
 ---
-import { Github, Linkedin, X as Twitter } from 'simple-icons-astro';
+import SimpleIconsGithub from '~icons/simple-icons/github';
+import SimpleIconsLinkedin from '~icons/simple-icons/linkedin';
+import SimpleIconsTwitter from '~icons/simple-icons/twitter';
 
 const today = new Date();
 ---
@@ -8,15 +10,15 @@ const today = new Date();
   <div class="container flex items-center justify-end gap-3">
     <a href="https://github.com/tnfssc" target="_blank" rel="noopener noreferrer">
       <span class="sr-only">Go to sharath's GitHub</span>
-      <Github class="h-5 w-5" />
+      <SimpleIconsGithub class="h-5 w-5" />
     </a>
     <a href="https://x.com/tnfssc" target="_blank" rel="noopener noreferrer">
       <span class="sr-only">Go to sharath's Twitter</span>
-      <Twitter class="h-5 w-5" />
+      <SimpleIconsTwitter class="h-5 w-5" />
     </a>
     <a href="https://www.linkedin.com/in/tnfssc/" target="_blank" rel="noopener noreferrer">
       <span class="sr-only">Go to sharath's LinkedIn</span>
-      <Linkedin class="h-5 w-5" />
+      <SimpleIconsLinkedin class="h-5 w-5" />
     </a>
 
     <div>

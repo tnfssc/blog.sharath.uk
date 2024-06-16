@@ -40,6 +40,10 @@
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "react/prop-types": "off"
       }
     },
     {
@@ -59,6 +63,9 @@
         "extraFileExtensions": [
           ".astro"
         ]
+      },
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off"
       }
     }
   ],
@@ -72,8 +79,7 @@
   ],
   "settings": {
     "react": {
-      "version": "18.3.1"
-    },
-    "@typescript-eslint/no-non-null-assertion": "off"
+      "version": "detect"
+    }
   }
 }
