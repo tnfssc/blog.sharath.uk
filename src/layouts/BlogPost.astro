@@ -17,7 +17,18 @@ const { title, description, date, heroImage, tags } = Astro.props;
       <FormattedDate date={date} />
     </div>
     <div class="flex justify-center">
-      {heroImage && <Image class="mt-2 w-full rounded-xl" width={480} height={270} src={heroImage} alt={title} />}
+      {
+        heroImage && (
+          <Image
+            referrerpolicy="no-referrer"
+            class="mt-2 w-full rounded-xl"
+            width={480}
+            height={270}
+            src={heroImage}
+            alt={title}
+          />
+        )
+      }
     </div>
     <div>
       <div>

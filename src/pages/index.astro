@@ -17,7 +17,14 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf()
           class={cn('flex w-full flex-col gap-8 rounded-xl p-4 outline-1 hover:outline lg:flex-row')}
         >
           {post.data.heroImage && (
-            <Image class="my-0 rounded-lg" width={480} height={270} src={post.data.heroImage} alt={post.data.title} />
+            <Image
+              referrerpolicy="no-referrer"
+              class="my-0 rounded-lg"
+              width={480}
+              height={270}
+              src={post.data.heroImage}
+              alt={post.data.title}
+            />
           )}
           <div class="flex h-full flex-col justify-center gap-4 p-4 pl-0">
             <span class="text-2xl leading-tight">{post.data.title}</span>
