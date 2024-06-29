@@ -49,7 +49,7 @@ const { title, description, image } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<script type="text/javascript">
+<script is:inline type="text/javascript">
   (function (c, l, a, r, i, t, y) {
     c[a] =
       c[a] ||
