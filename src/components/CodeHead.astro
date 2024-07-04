@@ -1,5 +1,6 @@
 ---
 import { LangIcons } from '@/lib/lang-icon';
+import TablerCircleCheckFilled from '~icons/tabler/circle-check-filled';
 import TablerCopy from '~icons/tabler/copy';
 
 import { CodeHeadCopyReact } from './CodeHeadCopy.react';
@@ -15,9 +16,10 @@ const Component = LangIcons[lang];
 ---
 
 <div class="mt-6 flex w-full items-center gap-2 rounded-t-lg border-b border-solid border-b-slate-500 bg-[#24292E] p-2">
-  <Component class="inline h-4 w-4" />
+  <Component class="!mb-0 inline !h-4 !w-4" />
   <span class="flex-1 font-mono text-sm font-bold">{filename ?? lang}</span>
-  <CodeHeadCopyReact client:load className="inline h-4 w-4 hover:text-slate-500">
-    <TablerCopy class="h-full w-full" />
+  <CodeHeadCopyReact client:load className="hover:text-slate-500 mr-1">
+    <TablerCopy class="!mb-0 !h-full !w-full" />
+    <TablerCircleCheckFilled class="!mb-0 !h-full !w-full text-green-500 hover:text-green-500" slot="copiedIcon" />
   </CodeHeadCopyReact>
 </div>
