@@ -5,15 +5,18 @@ import { navigate } from 'astro:transitions/client';
 export interface SearchInputProps {
   searchBaseUrl: string;
   defaultValue?: string | undefined;
+  focusOnLoad?: boolean;
 }
 
-export default function SearchInput({ searchBaseUrl, defaultValue }: Readonly<SearchInputProps>) {
+export default function SearchInput({ searchBaseUrl, defaultValue, focusOnLoad }: Readonly<SearchInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (document && inputRef.current) {
-      inputRef.current.focus();
+      if (focusOnLoad) {
+        inputRef.current.focus();
+      }
       inputRef.current.setSelectionRange(defaultValue?.length ?? 0, defaultValue?.length ?? 0);
     }
   }, [defaultValue]);
