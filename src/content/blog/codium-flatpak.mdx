@@ -1,10 +1,10 @@
 ---
 title: 'VSCodium, Flatpak, Wayland and Linux. How I got it all working.'
 description: "It was a wild ride. Weird bugs, crazy workarounds and a lot of trial and error. Here's how I got it all working."
-date: 'Jul 2 2024'
-heroImage: 'https://cdn.sharath.uk/20247-sy053.png'
-tags: ['flatpak', 'vscode', 'codium', 'linux', 'ubuntu', 'howto', 'editor', 'dev', 'sync', 'linux']
-public: false
+date: 'Jul 4 2024'
+heroImage: 'https://cdn.sharath.uk/20247-d5yb4.png'
+tags: ['flatpak', 'vscode', 'codium', 'linux', 'ubuntu', 'howto', 'editor', 'dev', 'sync', 'linux', 'wayland', 'gpu']
+public: true
 ---
 
 export * from '@/components/mdx';
@@ -12,6 +12,7 @@ export * from '@/components/mdx';
 import Checkbox from '@/components/Checkbox.astro';
 import CodeHead from '@/components/CodeHead.astro';
 
+import BiGpuCardIcon from '~icons/bi/gpu-card';
 import CodiconExtensionsIcon from '~icons/codicon/extensions';
 import CodiconSyncIcon from '~icons/codicon/sync';
 import CodiconTerminalBashIcon from '~icons/codicon/terminal-bash';
@@ -23,7 +24,6 @@ import SimpleIconsFlatpakIcon from '~icons/simple-icons/flatpak';
 import SimpleIconsWaylandIcon from '~icons/simple-icons/wayland';
 import VscodeIconsFileTypeHyprIcon from '~icons/vscode-icons/file-type-hypr';
 import VscodeIconsFileTypeXorgIcon from '~icons/vscode-icons/file-type-xorg';
-import BiGpuCardIcon from '~icons/bi/gpu-card'
 
 > [Skip ahead of the backstory by clicking here](#final-chapter-perfection).
 
