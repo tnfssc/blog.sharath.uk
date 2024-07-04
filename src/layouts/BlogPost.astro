@@ -9,7 +9,7 @@ type Props = CollectionEntry<'blog'>['data'];
 const { title, description, date, heroImage, tags, public: isPublic } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={heroImage}>
   <article
     class="hide-last-empty-line-in-code-block hide-quote-marks-inside-blockquote remove-first-line-space-infront-of-code-block defaults-for-unplugin-icons prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden prose-pre:mt-0 prose-pre:rounded-t-none prose-img:rounded-xl"
   >
