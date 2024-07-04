@@ -8,7 +8,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 export async function GET(context: APIContext) {
   if (!context.site) throw new Error('No site found');
 
-  const posts = await getCollection('blog');
+  let posts = await getCollection('blog');
+  posts = posts.filter((post) => post.data.public);
+
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
