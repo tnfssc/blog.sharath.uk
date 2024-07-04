@@ -44,7 +44,9 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
         <p class="text-sm text-gray-300">
           {description}
         </p>
-        {tags.map((t) => <span class="mr-1 rounded-full border p-2 text-sm text-gray-500">{t}</span>)}
+        <div class="flex flex-wrap gap-2">
+          {tags.map((t) => <span class="mr-1 rounded-full border p-2 text-sm text-gray-500">{t}</span>)}
+        </div>
         <hr class="my-4" />
       </div>
       <slot />
@@ -70,6 +72,6 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
   }
 
   .defaults-for-unplugin-icons svg {
-    @apply inline h-5 w-5 mb-1 mx-0.5;
+    @apply mx-0.5 mb-1 inline h-5 w-5;
   }
 </style>
