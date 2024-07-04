@@ -22,6 +22,7 @@ posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
         >
           {post.data.heroImage && (
             <Image
+              transition:name={`${post.data.heroImage}-image`}
               referrerpolicy="no-referrer"
               class="my-0 rounded-lg"
               width={480}

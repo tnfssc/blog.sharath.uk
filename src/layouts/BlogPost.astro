@@ -28,6 +28,7 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
       {
         heroImage && (
           <Image
+            transition:name={`${heroImage}-image`}
             referrerpolicy="no-referrer"
             class="mt-2 w-full rounded-xl"
             width={480}

@@ -5,6 +5,8 @@ import fontRedHatDisplay from '@fontsource-variable/red-hat-display/files/red-ha
 import fontRedHatMono from '@fontsource-variable/red-hat-mono/files/red-hat-mono-latin-wght-normal.woff2';
 import fontRedHatText from '@fontsource-variable/red-hat-text/files/red-hat-text-latin-wght-normal.woff2';
 
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
   title: string;
   description: string;
@@ -48,6 +50,8 @@ const { title, description, image } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<ViewTransitions />
 
 <script is:inline type="text/javascript">
   if (!window.location.hostname.includes('localhost')) {

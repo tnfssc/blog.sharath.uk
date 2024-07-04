@@ -57,6 +57,7 @@ const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) a
         >
           {result.image && (
             <Image
+              transition:name={`${result.image}-image`}
               referrerpolicy="no-referrer"
               class="my-0 rounded-lg"
               width={480}

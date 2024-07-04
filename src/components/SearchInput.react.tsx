@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { navigate } from 'astro:transitions/client';
+
 export interface SearchInputProps {
   searchBaseUrl: string;
   defaultValue?: string | undefined;
@@ -35,7 +37,7 @@ export default function SearchInput({ searchBaseUrl, defaultValue }: Readonly<Se
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      window.location.href = searchBaseUrl + e.currentTarget.value;
+      void navigate(searchBaseUrl + e.currentTarget.value);
     }
   };
 
