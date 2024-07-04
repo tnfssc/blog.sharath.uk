@@ -41,12 +41,21 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
     </div>
     <div>
       <div>
-        <h1 class="mb-1">{title}</h1>
-        <p class="text-sm text-gray-300">
+        <h1 class="mb-1" transition:name={`${title}-title`}>{title}</h1>
+        <p class="text-sm text-gray-300" transition:name={`${title}-description`}>
           {description}
         </p>
-        <div class="flex flex-wrap gap-2">
-          {tags.map((t) => <span class="mr-1 rounded-full border p-2 text-sm text-gray-500">{t}</span>)}
+        <div class="flex flex-wrap gap-2" transition:name={`${title}-tags`}>
+          {
+            tags.map((t, i) => (
+              <span
+                class="mr-1 rounded-full border p-2 text-sm text-gray-500"
+                transition:name={`${title}-${t}-${i.toString()}-tag`}
+              >
+                {t}
+              </span>
+            ))
+          }
         </div>
         <hr class="my-4" />
       </div>
