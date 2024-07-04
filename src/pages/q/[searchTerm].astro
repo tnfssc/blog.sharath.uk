@@ -1,0 +1,84 @@
+---
+import FormattedDate from '@/components/FormattedDate.astro';
+import SearchInput from '@/components/SearchInput.react';
+import BaseLayout from '@/layouts/Base.astro';
+import MiniSearch, { type SearchResult } from 'minisearch';
+
+import { cn } from '@/cn';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+interface Document {
+  id: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  tags: string[];
+  slug: string;
+  image: string;
+  date: Date;
+}
+
+const minisearch = new MiniSearch<Document>({
+  fields: ['title', 'subtitle', 'content', 'tags', 'slug'],
+  storeFields: ['id', 'title', 'subtitle', 'tags', 'slug', 'image', 'date'],
+});
+
+export const prerender = false;
+const { searchTerm } = Astro.params;
+
+let posts = await getCollection('blog');
+posts = posts.filter((post) => post.data.public);
+
+const documents: Document[] = posts.map((p) => ({
+  id: p.id,
+  title: p.data.title,
+  subtitle: p.data.description,
+  content: p.body,
+  tags: p.data.tags,
+  slug: p.slug,
+  image: p.data.heroImage,
+  date: p.data.date,
+}));
+
+minisearch.addAll(documents);
+
+const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) as (SearchResult & Document)[];
+---
+
+<BaseLayout>
+  <div class="grid w-full grid-cols-1 gap-8">
+    <SearchInput client:load searchBaseUrl="/q/" defaultValue={searchTerm} />
+    {
+      results.map((result) => (
+        <a
+          href={`/blog/${result.slug}/`}
+          class={cn('flex w-full flex-col gap-8 rounded-xl p-4 outline-1 hover:outline lg:flex-row')}
+        >
+          {result.image && (
+            <Image
+              referrerpolicy="no-referrer"
+              class="my-0 rounded-lg"
+              width={480}
+              height={270}
+              src={result.image}
+              alt={result.title}
+            />
+          )}
+          <div class="flex h-full flex-col justify-center gap-4 p-4 pl-0">
+            <span class="text-2xl leading-tight">{result.title}</span>
+            <span class="text-sm leading-tight text-secondary-foreground">{result.subtitle}</span>
+            <div class="flex flex-wrap gap-1">
+              {result.tags.map((t) => (
+                <span class="rounded-full border px-2 py-1 text-sm text-gray-500">{t}</span>
+              ))}
+            </div>
+            <span class="text-sm leading-none text-secondary-foreground">
+              <FormattedDate date={result.date} />
+            </span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import { cn } from '@/cn';
 import FormattedDate from '@/components/FormattedDate.astro';
+import SearchInput from '@/components/SearchInput.react';
 import BaseLayout from '@/layouts/Base.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
@@ -12,6 +13,7 @@ posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 <BaseLayout>
   <div class="grid w-full grid-cols-1 gap-8">
+    <SearchInput client:load searchBaseUrl="/q/" />
     {
       posts.map((post) => (
         <a
