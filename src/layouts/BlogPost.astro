@@ -1,20 +1,28 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import MaterialSymbolsLockIcon from '~icons/material-symbols/lock';
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from './Base.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
-
-const { title, description, date, heroImage, tags } = Astro.props;
+const { title, description, date, heroImage, tags, public: isPublic } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
   <article
-    class="prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden prose-pre:mt-0 prose-pre:rounded-t-none prose-img:rounded-xl"
+    class="hide-last-empty-line-in-code-block hide-quote-marks-inside-blockquote remove-first-line-space-infront-of-code-block defaults-for-unplugin-icons prose mx-auto dark:prose-invert prose-a:no-underline hover:prose-a:underline prose-code:whitespace-pre prose-code:rounded prose-code:border prose-code:bg-[#24292E] prose-code:p-0.5 prose-code:before:hidden prose-code:after:hidden prose-pre:mt-0 prose-pre:rounded-t-none prose-img:rounded-xl"
   >
     <div class="flex justify-end gap-4">
-      <FormattedDate date={date} />
+      {isPublic && <FormattedDate date={date} />}
+      {
+        !isPublic && (
+          <span class="text-gray-300">
+            <MaterialSymbolsLockIcon color="yellow" class="inline h-4 w-4" />
+            Draft
+          </span>
+        )
+      }
     </div>
     <div class="flex justify-center">
       {
@@ -43,3 +51,25 @@ const { title, description, date, heroImage, tags } = Astro.props;
     </div>
   </article>
 </BaseLayout>
+
+<style is:global>
+  .hide-last-empty-line-in-code-block .astro-code code .line:last-of-type {
+    display: none !important;
+  }
+
+  .remove-first-line-space-infront-of-code-block .astro-code code .line:first-of-type {
+    margin-left: -3px !important;
+  }
+
+  .hide-quote-marks-inside-blockquote blockquote ::before {
+    content: none !important;
+  }
+
+  .hide-quote-marks-inside-blockquote blockquote ::after {
+    content: none !important;
+  }
+
+  .defaults-for-unplugin-icons svg[data-astro-source-file] {
+    @apply inline h-5 w-5 mb-1 mx-0.5;
+  }
+</style>
