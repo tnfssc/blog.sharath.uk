@@ -16,6 +16,9 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: 'compile',
   }),
+  image: {
+    domains: ['cdn.sharath.uk'],
+  },
   integrations: [
     mdx({
       remarkPlugins: [remarkGemoji],

@@ -11,7 +11,6 @@
     "preview": "bun --bun x astro preview",
     "start": "bun --bun x astro dev"
   },
-  "dependencies": { "minisearch": "^6.3.0" },
   "devDependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/cloudflare": "^11.0.1",
@@ -40,6 +39,7 @@
     "eslint-plugin-mdx": "^3.1.5",
     "eslint-plugin-react": "^7.34.3",
     "lucide-react": "^0.395.0",
+    "minisearch": "^6.3.0",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-astro-organize-imports": "^0.4.9",
