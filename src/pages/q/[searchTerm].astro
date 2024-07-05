@@ -5,7 +5,6 @@ import BaseLayout from '@/layouts/Base.astro';
 import MiniSearch, { type SearchResult } from 'minisearch';
 
 import { cn } from '@/cn';
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 interface Document {
@@ -56,7 +55,7 @@ const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) a
           class={cn('flex w-full flex-col gap-8 rounded-xl p-4 outline-1 hover:outline lg:flex-row')}
         >
           {result.image && (
-            <Image
+            <img
               loading={i < 3 ? 'eager' : 'lazy'}
               transition:name={`${result.image}-image`}
               referrerpolicy="no-referrer"
