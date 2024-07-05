@@ -27,7 +27,7 @@ export const CodeHeadCopyReact: React.FC<
   }, []);
 
   return (
-    <button onMouseDown={handleClick} {...props}>
+    <button onMouseDown={handleClick} {...props} title="Copy to clipboard">
       {copied ? copiedIcon : children}
     </button>
   );
