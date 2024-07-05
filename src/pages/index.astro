@@ -1,14 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
 import { cn } from '@/cn';
 import FormattedDate from '@/components/FormattedDate.astro';
 import SearchInput from '@/components/SearchInput.react';
 import BaseLayout from '@/layouts/Base.astro';
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { postImgs } from '@/lib/postImgs';
 
+const postImgsMap = await postImgs();
 let posts = await getCollection('blog');
 posts = posts.filter((post) => post.data.public);
 posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+posts = posts.map((p) => ({ ...p, heroImage: postImgsMap[p.slug]!.src }));
 ---
 
 <BaseLayout>
@@ -23,7 +27,7 @@ posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
           {post.data.heroImage && (
             <Image
               loading={i < 3 ? 'eager' : 'lazy'}
-              transition:name={`${post.data.heroImage}-image`}
+              transition:name={`${post.data.title}-image`}
               referrerpolicy="no-referrer"
               class="my-0 max-w-full rounded-lg lg:max-w-md"
               width={800}

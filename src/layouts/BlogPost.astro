@@ -1,9 +1,11 @@
 ---
+import FormattedDate from '@/components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import MaterialSymbolsLockIcon from '~icons/material-symbols/lock';
-import FormattedDate from '../components/FormattedDate.astro';
+
 import BaseLayout from './Base.astro';
+
+import MaterialSymbolsLockIcon from '~icons/material-symbols/lock';
 
 type Props = CollectionEntry<'blog'>['data'];
 const { title, description, date, heroImage, tags, public: isPublic } = Astro.props;
@@ -29,7 +31,7 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
         heroImage && (
           <Image
             loading="eager"
-            transition:name={`${heroImage}-image`}
+            transition:name={`${title}-image`}
             referrerpolicy="no-referrer"
             class="mt-2 w-full rounded-xl"
             width={800}
