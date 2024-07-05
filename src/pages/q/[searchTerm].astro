@@ -50,13 +50,14 @@ const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) a
   <div class="grid w-full grid-cols-1 gap-8">
     <SearchInput client:load searchBaseUrl="/q/" defaultValue={searchTerm} />
     {
-      results.map((result) => (
+      results.map((result, i) => (
         <a
           href={`/blog/${result.slug}/`}
           class={cn('flex w-full flex-col gap-8 rounded-xl p-4 outline-1 hover:outline lg:flex-row')}
         >
           {result.image && (
             <Image
+              loading={i < 3 ? 'eager' : 'lazy'}
               transition:name={`${result.image}-image`}
               referrerpolicy="no-referrer"
               class="my-0 max-w-md rounded-lg"
