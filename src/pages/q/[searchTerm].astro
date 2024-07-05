@@ -6,6 +6,7 @@ import MiniSearch, { type SearchResult } from 'minisearch';
 
 import { cn } from '@/cn';
 import { getCollection } from 'astro:content';
+import type { PostImgs } from '../img.o.json';
 
 interface Document {
   id: string;
@@ -29,6 +30,8 @@ const { searchTerm } = Astro.params;
 let posts = await getCollection('blog');
 posts = posts.filter((post) => post.data.public);
 
+const postImgs = await fetch(Astro.site!.origin + '/img.o.json').then((r) => r.json() as Promise<PostImgs>);
+
 const documents: Document[] = posts.map((p) => ({
   id: p.id,
   title: p.data.title,
@@ -36,7 +39,7 @@ const documents: Document[] = posts.map((p) => ({
   content: p.body,
   tags: p.data.tags,
   slug: p.slug,
-  image: p.data.heroImage,
+  image: postImgs[p.slug]!.src,
   date: p.data.date,
 }));
 
@@ -47,7 +50,7 @@ const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) a
 
 <BaseLayout>
   <div class="grid w-full grid-cols-1 gap-8">
-    <SearchInput client:load searchBaseUrl="/q/" defaultValue={searchTerm} />
+    <SearchInput client:load searchBaseUrl="/q/" defaultValue={searchTerm} transition:persist="blog-search" />
     {
       results.map((result, i) => (
         <a

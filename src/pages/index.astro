@@ -13,7 +13,7 @@ posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 <BaseLayout>
   <div class="grid w-full grid-cols-1 gap-8">
-    <SearchInput client:load searchBaseUrl="/q/" />
+    <SearchInput client:load searchBaseUrl="/q/" transition:persist="blog-search" />
     {
       posts.map((post, i) => (
         <a

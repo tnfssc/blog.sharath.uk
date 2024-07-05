@@ -1,9 +1,9 @@
 ---
 import HeaderLink from '@/components/HeaderLink.astro';
+import { env } from '@/conf';
 import { Image } from 'astro:assets';
 
 import MdiOpenInNewIcon from '~icons/mdi/open-in-new';
-
 import SimpleIconsGithub from '~icons/simple-icons/github';
 ---
 
@@ -13,7 +13,7 @@ import SimpleIconsGithub from '~icons/simple-icons/github';
       <a class="flex w-12 items-center gap-4 hover:underline" href="/">
         <span class="sr-only">Go to this blog's homepage</span>
         <Image loading="eager" src="/icon.png" width={128} height={128} alt="blog.sharath.uk logo" />
-        <span class="hidden text-2xl md:block">blog.sharath.uk</span>
+        <span class="hidden text-2xl md:block">{env.SITE_TITLE}</span>
       </a>
     </div>
     <div class="flex gap-4">
