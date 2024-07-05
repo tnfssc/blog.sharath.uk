@@ -25,7 +25,7 @@ posts = posts.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
               loading={i < 3 ? 'eager' : 'lazy'}
               transition:name={`${post.data.heroImage}-image`}
               referrerpolicy="no-referrer"
-              class="my-0 max-w-md rounded-lg"
+              class="my-0 max-w-full rounded-lg lg:max-w-md"
               width={800}
               height={500}
               src={post.data.heroImage}

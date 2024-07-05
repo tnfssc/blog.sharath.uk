@@ -302,11 +302,12 @@ However, this didn't work. I later figured out that I need to use the following 
 flatpak run com.BraveSoftware.Brave --enable-features=VaapiVideoDecoder,UseOzonePlatform --ozone-platform=wayland --enable-gpu-rasterization
 ```
 
-As I didn't want to enter this long command every time, I added them to the `~/.var/app/com.vscodium.codium-insiders/config/codium-flags.conf` file.
+As I didn't want to enter this long command every time, I added them to the following file.
 
 <CodeHead lang="sh" filename="codium-flags.conf" />
 
-```sh
+```yml
+# ~/.var/app/com.vscodium.codium-insiders/config/codium-flags.conf
 --enable-features=VaapiVideoDecoder,UseOzonePlatform
 --ozone-platform=wayland
 --enable-gpu-rasterization
