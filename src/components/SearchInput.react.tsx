@@ -1,6 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { navigate } from 'astro:transitions/client';
+
+export const useDebouncedValue = (value: string, delay = 300) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
 
 export interface SearchInputProps {
   searchBaseUrl: string;
@@ -10,6 +25,9 @@ export interface SearchInputProps {
 
 export default function SearchInput({ searchBaseUrl, defaultValue, focusOnLoad }: Readonly<SearchInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [value, setValue] = useState(defaultValue ?? '');
+  const debouncedValue = useDebouncedValue(value);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -37,6 +55,10 @@ export default function SearchInput({ searchBaseUrl, defaultValue, focusOnLoad }
     };
   }, []);
 
+  useEffect(() => {
+    void navigate(searchBaseUrl + debouncedValue);
+  }, [debouncedValue]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -51,7 +73,10 @@ export default function SearchInput({ searchBaseUrl, defaultValue, focusOnLoad }
       onKeyDown={handleKeyDown}
       type="text"
       placeholder='Press "/" to search'
-      defaultValue={defaultValue}
+      value={value}
+      onChange={(e) => {
+        setValue(e.currentTarget.value);
+      }}
       className="w-full border-b border-gray-500 p-4 hover:border-gray-50"
     />
   );

@@ -2,51 +2,21 @@
 import MiniSearch, { type SearchResult } from 'minisearch';
 
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 
 import { cn } from '@/cn';
 import FormattedDate from '@/components/FormattedDate.astro';
 import SearchInput from '@/components/SearchInput.react';
 import BaseLayout from '@/layouts/Base.astro';
-import type { PostImgs } from '@/pages/img.o.json';
-
-interface Document {
-  id: string;
-  title: string;
-  subtitle: string;
-  content: string;
-  tags: string[];
-  slug: string;
-  image: string;
-  date: Date;
-}
-
-const minisearch = new MiniSearch<Document>({
-  fields: ['title', 'subtitle', 'content', 'tags', 'slug'],
-  storeFields: ['id', 'title', 'subtitle', 'tags', 'slug', 'image', 'date'],
-});
+import { type Document, fields } from './search-index.json';
 
 export const prerender = false;
+
 const { searchTerm } = Astro.params;
 
-let posts = await getCollection('blog');
-posts = posts.filter((post) => post.data.public);
-
-const postImgs = await fetch(Astro.site!.origin + '/img.o.json').then((r) => r.json() as Promise<PostImgs>);
-
-const documents: Document[] = posts.map((p) => ({
-  id: p.id,
-  title: p.data.title,
-  subtitle: p.data.description,
-  content: p.body,
-  tags: p.data.tags,
-  slug: p.slug,
-  image: postImgs[p.slug]!.src,
-  date: p.data.date,
-}));
-
-minisearch.addAll(documents);
-
+const minisearch = MiniSearch.loadJSON<Document>(
+  await fetch(Astro.site!.origin + '/q/search-index.json').then((r) => r.text()),
+  { fields },
+);
 const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) as (SearchResult & Document)[];
 ---
 
@@ -87,7 +57,7 @@ const results = (searchTerm ? minisearch.search(searchTerm).slice(0, 10) : []) a
               ))}
             </div>
             <span class="text-sm leading-none text-secondary-foreground">
-              <FormattedDate date={result.date} />
+              <FormattedDate date={new Date(result.date)} />
             </span>
           </div>
         </a>
