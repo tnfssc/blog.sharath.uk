@@ -64,7 +64,26 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
       </div>
       <slot />
     </div>
+    <script
+      is:inline
+      defer
+      src="https://commento.sharath.uk/js/commento.js"
+      data-no-fonts="true"
+      data-hide-deleted="true"></script>
+    <div id="commento"></div>
   </article>
-  <script is:inline defer src="https://commento.sharath.uk/js/commento.js"></script>
-  <div id="commento"></div>
 </BaseLayout>
+
+<style is:global>
+  #commento-footer,
+  .commento-markdown-button,
+  .commento-permalink,
+  .commento-anonymous-checkbox-container {
+    display: none;
+  }
+  .commento-textarea-container > textarea,
+  .commento-guest-details {
+    background: #000000;
+    color: #ffffff;
+  }
+</style>
