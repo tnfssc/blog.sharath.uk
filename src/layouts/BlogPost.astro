@@ -64,15 +64,5 @@ const { title, description, date, heroImage, tags, public: isPublic } = Astro.pr
       </div>
       <slot />
     </div>
-    <div id="disqus_thread"></div>
-    <script is:inline>
-      (function () {
-        var d = document,
-          s = d.createElement('script');
-        s.src = 'https://sharathuk.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
   </article>
 </BaseLayout>
