@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { navigate } from 'astro:transitions/client';
 
-export const useDebouncedValue = (value: string, delay = 300) => {
+export const useDebouncedValue = (value: string, delay = 1000) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
