@@ -5,6 +5,7 @@ import HeaderLink from '@/components/HeaderLink.astro';
 
 import { env } from '@/conf';
 
+import MaterialSymbolsRssFeedRoundedIcon from '~icons/material-symbols/rss-feed-rounded';
 import MdiOpenInNewIcon from '~icons/mdi/open-in-new';
 import SimpleIconsGithub from '~icons/simple-icons/github';
 ---
@@ -12,9 +13,9 @@ import SimpleIconsGithub from '~icons/simple-icons/github';
 <header>
   <nav class="flex w-full items-center gap-4 border-b p-4">
     <div class="flex-1">
-      <a class="flex w-12 items-center gap-4 hover:underline" href="/">
+      <a class="flex w-10 items-center gap-4 hover:underline" href="/">
         <span class="sr-only">Go to this blog's homepage</span>
-        <Image loading="eager" src="/icon.png" width={128} height={128} alt="blog.sharath.uk logo" />
+        <Image loading="eager" src="/icon.png" width={64} height={64} alt="blog.sharath.uk logo" />
         <span class="hidden text-2xl md:block">{env.SITE_TITLE}</span>
       </a>
     </div>
@@ -32,7 +33,13 @@ import SimpleIconsGithub from '~icons/simple-icons/github';
     <div>
       <a href="https://github.com/tnfssc/blog.sharath.uk" target="_blank" rel="noopener noreferrer">
         <span class="sr-only">Go to this blog's GitHub repo</span>
-        <SimpleIconsGithub class="h-10 w-10" />
+        <SimpleIconsGithub class="h-6 w-6" />
+      </a>
+    </div>
+    <div>
+      <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">Subscribe to RSS</span>
+        <MaterialSymbolsRssFeedRoundedIcon class="h-6 w-6" />
       </a>
     </div>
   </nav>
