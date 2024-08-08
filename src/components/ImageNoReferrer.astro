@@ -1,4 +1,5 @@
 ---
+import { cn } from '@/cn';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -13,4 +14,10 @@ interface Props {
 const props = Astro.props;
 ---
 
-<Image referrerpolicy="no-referrer" class="w-full rounded-xl" width={800} height={500} {...props} />
+<Image
+  referrerpolicy="no-referrer"
+  class={cn('w-full rounded-xl', props.className)}
+  width={800}
+  height={500}
+  {...props}
+/>

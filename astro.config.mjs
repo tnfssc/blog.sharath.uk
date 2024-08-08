@@ -27,7 +27,7 @@ export default defineConfig({
       remarkPlugins: [remarkGemoji],
       rehypePlugins: [rehypeAccessibleEmojis],
     }),
-    sitemap(),
+    sitemap({ filter: ({ url }) => !url.includes('/q') }),
     tailwind(),
     react(),
   ],
