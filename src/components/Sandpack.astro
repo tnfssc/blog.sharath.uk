@@ -1,0 +1,11 @@
+---
+import { type SandpackProps, Sandpack as SandpackReact } from '@codesandbox/sandpack-react';
+
+type Props = SandpackProps;
+
+const props = Astro.props;
+---
+
+<div class="not-prose">
+  <SandpackReact client:idle template="react" theme="dark" {...props} />
+</div>
