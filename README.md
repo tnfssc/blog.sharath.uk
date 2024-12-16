@@ -13,6 +13,12 @@ The entire website was made using Astro.
 
 ## Instructions
 
+- Before running the dev server install all the necessary dependecies:
+
+```sh
+bun install
+```
+
 - You can start the dev server using the following command:
 
 ```sh

@@ -1,0 +1,100 @@
+---
+title: "Step-by-Step Guide to Setting Up MongoDB Sharded Cluster"
+date: "2024-12-15"
+description: "A comprehensive guide to setting up and managing a MongoDB sharded cluster for scalable applications."
+heroImage: 'https://cdn.sharath.uk/20247-c8uoi.png'
+tags: ["MongoDB", "Sharding", "Database", "Distributed", "Highly Available"]
+public: true
+---
+
+## Introduction
+MongoDB sharding enables horizontal scaling by distributing data across multiple servers. This guide provides a step-by-step process to configure and manage a MongoDB sharded cluster using Docker.
+
+## Step 1: Create a Docker Network
+All containers must be on the same network for communication. Create a Docker network using:
+
+```bash
+#!/bin/bash
+
+docker network create mongo-shard-cluster
+```
+
+### MongoDB Sharding Architecture: Building Blocks
+
+Before diving into the setup process, let's explore the core components of a sharded MongoDB architecture:
+
+- **Routers (mongos):**  
+  Routers act as query routers. They are responsible for interfacing with applications, routing queries to the appropriate shards, and consolidating results. Routers maintain no data but are critical for query distribution.
+
+- **Config Servers:**  
+  Config servers store metadata and configuration details about the cluster, such as shard locations and chunk distribution. They must run as a replica set to ensure high availability. A replica set consists of multiple nodes (typically three), providing redundancy and failover. If the primary node goes down, one of the secondary nodes automatically becomes the primary to ensure uninterrupted operation.
+
+- **Shards:**  
+  Shards are the actual data storage units in a sharded cluster. Each shard is itself a replica set consisting of three nodes: one primary and two secondary. The primary node handles all write operations and replicates data to the secondary nodes. This setup ensures data redundancy and fault tolerance.  
+  Data is distributed across shards based on the shard key, and queries are directed to the relevant shard(s) by the routers.
+
+These components work together to ensure scalability, fault tolerance, and efficient query execution in a distributed setup.
+
+
+## Step 2: Setup Config Servers
+Config servers store metadata about the cluster.
+
+### Script to Start Config Servers:
+
+https://github.com/NikhilBayyavarapu/CSE512_Final_Project/blob/main/scripts/config_servers.sh
+
+## Step 3: Setup Shards
+
+### Script to setup Shards:
+
+https://github.com/NikhilBayyavarapu/CSE512_Final_Project/blob/main/scripts/create_shards.sh
+
+The above script creates 3 shard-replica set each with 3 nodes. One of nodes acts as primary and the other 2 act as secondary. By default, primary node is used for write operations.
+
+## Step 4: Setup Routers
+
+Routers serve as the interface between the application and the sharded cluster.
+
+### Script to Start Routers:
+
+https://github.com/NikhilBayyavarapu/CSE512_Final_Project/blob/main/scripts/create_routers.sh
+
+## Step 5: Connect Shards to the Cluster
+Connect each shard to the routers using the following script:
+
+https://github.com/NikhilBayyavarapu/CSE512_Final_Project/blob/main/scripts/connect_shards.sh
+
+The script also setups a sample database "bank" with "users" and "transactions" collection.
+
+In the script, we specify MongoDB to shard the collections on a specific key: "user_id" for users collection and "transaction_id" for transactions collection.
+
+
+## Step 6: Verify Cluster Status
+Check the status of your cluster:
+
+Connect to the terminal of any of the routers using:
+
+```
+docker exec -it router-1 mongo
+```
+
+```javascript
+sh.status()
+```
+
+## Conclusion
+You now have a fully functional MongoDB sharded cluster! Monitor the cluster and the balancer to ensure optimal performance.
+
+## Please take a look at the code repository that fully sets up MongoDB Sharded Cluster. Also has the code to start a simple banking application.
+
+https://github.com/NikhilBayyavarapu/CSE512_Final_Project/tree/main
+
+## Additional Configuration Resources
+
+https://www.MongoDB.com/docs/manual/core/indexes/index-types/index-hashed/ 
+
+https://www.MongoDB.com/docs/manual/core/sharded-cluster-query-router/ 
+
+https://www.mongodb.com/docs/manual/reference/write-concern/ 
+
+https://www.mongodb.com/docs/manual/reference/read-concern/
